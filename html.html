@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Akun</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 300px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { width: 100%; padding: 10px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <div id="pesan"></div>
+    <form id="formLogin">
+        <div class="form-group"><label>Username</label><input type="text" id="username" required></div>
+        <div class="form-group"><label>Password</label><input type="password" id="password" required></div>
+        <button type="submit">Masuk</button>
+    </form>
+    <p style="text-align:center; font-size:14px;">Belum punya akun? <a href="daftar.html">Daftar di sini</a></p>
+</div>
+
+<script>
+document.getElementById('formLogin').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const userInput = document.getElementById('username').value;
+    const passInput = document.getElementById('password').value;
+    
+    // Mengambil data yang tadi disimpan saat daftar
+    const userSaved = localStorage.getItem('saved_username');
+    const passSaved = localStorage.getItem('saved_password');
+    
+    if (userInput === userSaved && passInput === passSaved) {
+        alert('Login Berhasil! Selamat datang ' + userInput);
+    } else {
+        document.getElementById('pesan').innerHTML = "<p style='color: red;'>Username atau Password salah / belum terdaftar!</p>";
+    }
+});
+</script>
+</body>
+</html>
